@@ -87,24 +87,24 @@ GitHub issue it should:
 
 ## Phase Build Plan
 
-### Phase 1 — Foundation [ ]
+### Phase 1 — Foundation [DONE]
   PR: "feat: project scaffold, database, and CI setup"
   Goal: working project structure, database connection,
         health check, CI pipeline, base test fixtures
 
-### Phase 2 — Users [ ]
+### Phase 2 — Users [DONE]
   PR: "feat: user management endpoints"
   Goal: full CRUD for users with tests
 
-### Phase 3 — Projects [ ]
+### Phase 3 — Projects [DONE]
   PR: "feat: project management endpoints"
   Goal: full CRUD for projects with tests
 
-### Phase 4 — Tasks [ ]
+### Phase 4 — Tasks [DONE]
   PR: "feat: task management endpoints"
   Goal: full CRUD for tasks, assignment, status with tests
 
-### Phase 5 — Polish and course exercises [ ]
+### Phase 5 — Polish and course exercises [DONE]
   PR: "chore: documentation, TODO markers, course issues"
   Goal: deliberate gaps, GitHub issues, final docs
 
