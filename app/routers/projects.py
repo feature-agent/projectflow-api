@@ -40,6 +40,8 @@ async def create_project(
         )
 
 
+# TODO: Add skip (int, default 0) and limit (int, default 20) query parameters
+# and pass them to the service layer.
 @router.get("", response_model=ProjectListResponse)
 async def list_projects(
     db: AsyncSession = Depends(get_db),

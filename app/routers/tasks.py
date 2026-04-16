@@ -39,6 +39,8 @@ async def create_task(
         )
 
 
+# TODO: Add skip (int, default 0) and limit (int, default 20) query parameters
+# and pass them to the service layer.
 @router.get("", response_model=TaskListResponse)
 async def list_tasks(
     db: AsyncSession = Depends(get_db),
