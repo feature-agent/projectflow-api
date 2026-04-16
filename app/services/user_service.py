@@ -39,6 +39,8 @@ async def get_user_by_email(db: AsyncSession, email: str) -> Optional[User]:
     return result.scalar_one_or_none()
 
 
+# TODO: Add pagination support — accept skip (default 0) and limit (default 20)
+# query parameters. Return paginated results instead of all records.
 async def list_users(db: AsyncSession) -> List[User]:
     """List all users."""
     result = await db.execute(select(User).order_by(User.created_at))

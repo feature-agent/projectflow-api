@@ -37,6 +37,8 @@ async def get_project(db: AsyncSession, project_id: uuid.UUID) -> Optional[Proje
     return result.scalar_one_or_none()
 
 
+# TODO: Add pagination support — accept skip (default 0) and limit (default 20)
+# query parameters. Return paginated results instead of all records.
 async def list_projects(db: AsyncSession) -> List[Project]:
     """List all non-archived projects."""
     result = await db.execute(

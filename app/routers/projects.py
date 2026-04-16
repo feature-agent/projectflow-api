@@ -40,6 +40,8 @@ async def create_project(
         )
 
 
+# TODO: Add skip (int, default 0) and limit (int, default 20) query parameters
+# and pass them to the service layer.
 @router.get("", response_model=ProjectListResponse)
 async def list_projects(
     db: AsyncSession = Depends(get_db),
@@ -128,3 +130,6 @@ async def get_project_tasks(
     return TaskListResponse(
         tasks=[TaskResponse.model_validate(t) for t in tasks]
     )
+
+
+# TODO: Add a project statistics endpoint.

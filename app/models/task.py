@@ -26,6 +26,7 @@ class Task(Base):
     assignee_id: Mapped[Optional[uuid.UUID]] = mapped_column(
         ForeignKey("users.id"), nullable=True
     )
+    # TODO: Support due dates for tasks.
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True),
         default=lambda: datetime.now(timezone.utc),

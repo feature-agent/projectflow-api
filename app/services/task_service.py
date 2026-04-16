@@ -46,6 +46,9 @@ async def get_task(db: AsyncSession, task_id: uuid.UUID) -> Optional[Task]:
     return result.scalar_one_or_none()
 
 
+# TODO: Add pagination support — accept skip (default 0) and limit (default 20)
+# query parameters. Return paginated results instead of all records.
+# TODO: Add ability to filter tasks.
 async def list_tasks(db: AsyncSession) -> List[Task]:
     """List all tasks."""
     result = await db.execute(select(Task).order_by(Task.created_at))
