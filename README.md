@@ -61,3 +61,14 @@ Interactive docs available at `/docs` when the server is running.
 ## Architecture
 
 See CLAUDE.md for full architecture documentation and the reasoning behind every decision.
+
+## Contributing
+
+External contributors (including course students) work fork-and-PR style:
+
+1. Fork this repo to your own GitHub account
+2. Clone your fork and create a feature branch
+3. Commit and push to your fork
+4. Open a pull request against `feature-agent/projectflow-api:main`
+
+Direct pushes to `main` are blocked. All changes land via reviewed PRs.
