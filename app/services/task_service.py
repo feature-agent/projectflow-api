@@ -1,6 +1,7 @@
 """Task business logic."""
 
 import uuid
+from datetime import date
 from typing import List, Optional
 
 from sqlalchemy import select
@@ -10,6 +11,13 @@ from app.models.project import Project
 from app.models.task import Task
 from app.models.user import User
 from app.schemas.task import TaskCreate, TaskUpdate
+
+
+def due_date_warning(due_date: Optional[date]) -> Optional[str]:
+    """Return a warning message if the due date is in the past, else None."""
+    if due_date is not None and due_date < date.today():
+        return f"Due date {due_date.isoformat()} is in the past"
+    return None
 
 
 async def create_task(db: AsyncSession, data: TaskCreate) -> Task:
@@ -33,6 +41,7 @@ async def create_task(db: AsyncSession, data: TaskCreate) -> Task:
         priority="medium",
         project_id=data.project_id,
         assignee_id=data.assignee_id,
+        due_date=data.due_date,
     )
     db.add(task)
     await db.commit()
