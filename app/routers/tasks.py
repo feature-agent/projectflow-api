@@ -19,6 +19,12 @@ from app.services import task_service
 router = APIRouter(prefix="/tasks", tags=["tasks"])
 
 
+def _to_response(task) -> TaskResponse:
+    response = TaskResponse.model_validate(task)
+    response.due_date_warning = task_service.due_date_warning(task.due_date)
+    return response
+
+
 @router.post(
     "",
     response_model=TaskResponse,
@@ -31,7 +37,7 @@ async def create_task(
     """Create a new task."""
     try:
         task = await task_service.create_task(db, data)
-        return TaskResponse.model_validate(task)
+        return _to_response(task)
     except ValueError as e:
         return JSONResponse(
             status_code=status.HTTP_404_NOT_FOUND,
@@ -49,7 +55,7 @@ async def list_tasks(
     """List all tasks."""
     tasks = await task_service.list_tasks(db)
     return TaskListResponse(
-        tasks=[TaskResponse.model_validate(t) for t in tasks]
+        tasks=[_to_response(t) for t in tasks]
     )
 
 
@@ -68,7 +74,7 @@ async def get_task(
             status_code=status.HTTP_404_NOT_FOUND,
             content={"detail": f"Task with id '{task_id}' not found"},
         )
-    return TaskResponse.model_validate(task)
+    return _to_response(task)
 
 
 @router.put(
@@ -84,7 +90,7 @@ async def update_task(
     """Update a task."""
     try:
         task = await task_service.update_task(db, task_id, data)
-        return TaskResponse.model_validate(task)
+        return _to_response(task)
     except ValueError as e:
         return JSONResponse(
             status_code=status.HTTP_404_NOT_FOUND,
